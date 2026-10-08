@@ -4,166 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BECCS-by-best-WtE | Waste to Energy</title>
-    <!-- Google Fonts für ein modernes Design -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* --- GRUNDDESIGN & RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
-        body { background-color: #f9fafb; }
+        body { display: flex; background-color: #f9fafb; min-height: 100vh; }
         h1, h2, h3 { color: #111; margin-bottom: 15px; }
         p { margin-bottom: 15px; }
         a { color: #0056b3; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        hr { margin: 30px 0; border: 0; border-top: 1px solid #ddd; }
+        img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
         
-        /* --- NAVIGATION --- */
+        /* --- SIDEBAR NAVIGATION (jak w oryginale) --- */
         header {
-            position: fixed; top: 0; left: 0; width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000; padding: 15px 5%;
-            display: flex; justify-content: space-between; align-items: center;
+            width: 250px;
+            background-color: #444; /* Ciemnoszary z oryginału */
+            color: white;
+            padding: 40px 20px;
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .logo { font-size: 1.5rem; font-weight: 700; color: #0056b3; text-decoration: none; }
-        .logo:hover { text-decoration: none; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav ul li a { font-weight: 600; color: #333; font-size: 1rem; }
-        nav ul li a:hover { color: #0056b3; text-decoration: none; }
+        .logo { font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; margin-bottom: 50px; display: block;}
+        .logo:hover { text-decoration: none; color: #ccc;}
+        nav ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+        nav ul li a { font-weight: 400; color: #ddd; font-size: 1rem; }
+        nav ul li a:hover { color: white; text-decoration: none; }
+        .footer-nav { font-size: 0.8rem; color: #aaa; }
+        .footer-nav a { color: #aaa; }
+
+        /* --- MAIN CONTENT AREA --- */
+        main {
+            margin-left: 250px; /* Zostaw miejsce na sidebar */
+            width: calc(100% - 250px);
+        }
 
         /* --- SEKTIONEN --- */
-        section { padding: 100px 5% 60px; max-width: 1200px; margin: 0 auto; }
-        .hero { text-align: center; padding-top: 150px; padding-bottom: 80px; }
-        .hero h1 { font-size: 2.5rem; color: #0056b3; }
-        .hero p.subtitle { font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px; color: #555; }
+        section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
         
-        /* --- KARTEN-DESIGN --- */
+        /* --- HERO (Strona główna jak w oryginale) --- */
+        .hero-section {
+            background-image: url('home.jpg'); /* Zdjęcie zamku jako tło */
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            color: white;
+        }
+        .hero-content {
+            background: rgba(0, 0, 0, 0.6); /* Przyciemnienie dla czytelności */
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+        .hero-content h1 { color: white; font-size: 2.5rem; }
+        .hero-content p { color: #eee; font-size: 1.1rem; }
+
+        /* --- KARTEN-DESIGN (dla reszty treści) --- */
         .card { background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        @media(max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
         
-        /* --- LISTEN & HIGHLIGHTS --- */
-        ul.usp-list { list-style-type: none; margin-bottom: 20px; }
-        ul.usp-list li { margin-bottom: 10px; padding-left: 25px; position: relative; font-weight: 600; }
-        ul.usp-list li::before { content: "✓"; position: absolute; left: 0; color: #28a745; }
-        .highlight { background: #eef5ff; padding: 20px; border-left: 4px solid #0056b3; border-radius: 4px; }
-
         /* --- KONTAKTFORMULAR --- */
         form { display: flex; flex-direction: column; gap: 15px; }
         input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 1rem; }
         button { padding: 12px 20px; background: #0056b3; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: 600; transition: background 0.3s; }
         button:hover { background: #004494; }
 
-        /* --- FOOTER --- */
-        footer { background: #111; color: #fff; text-align: center; padding: 20px 5%; margin-top: 50px; }
-        footer a { color: #ccc; }
+        /* --- RESPONSIVNOŚĆ (dla telefonów) --- */
+        @media(max-width: 768px) {
+            body { flex-direction: column; }
+            header { width: 100%; height: auto; position: relative; padding: 20px; text-align: center; }
+            nav ul { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+            main { margin-left: 0; width: 100%; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION (Boczne menu) -->
     <header>
-        <a href="#home" class="logo">BECCS-by-best-WtE</a>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#project">Project</a></li>
-                <li><a href="#imprint">Imprint & Contact</a></li>
-            </ul>
-        </nav>
+        <div>
+            <a href="#home" class="logo">BECCS-by-best-WtE</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Homepage</a></li>
+                    <li><a href="#project">Project</a></li>
+                    <li><a href="#imprint">Imprint</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-nav">
+            <p>Unterstützt von Webnode</p>
+            <p><a href="#">Cookies</a></p>
+        </div>
     </header>
 
-    <!-- HOME / ABOUT SECTION -->
-    <section id="home" class="hero">
-        <h1>BECCS by best ecological and economic Waste to Energy</h1>
-        <p class="subtitle">A global breakthrough in waste recycling making BECCS possible worldwide.<br>Powered by <strong>BMC Sp. z o.o.</strong> (founded in 2015 in Poland).</p>
+    <!-- MAIN CONTENT -->
+    <main>
         
-        <div class="card grid-2" style="text-align: left; margin-top: 40px;">
-            <div>
-                <h2>About the Founder</h2>
-                <h3>Prof. Dr.-Ing. Hubert Boeckmann</h3>
-                <p><strong>Founder + Majority Shareholder + CEO</strong></p>
-                <p>Born May 10, 1946 in Germany. Received one of the best university degrees as a Dipl.-Ing. (Business) and as a Dr.-Ing. from the Technical University of Berlin.</p>
-                <p>Has been active for about 20 years in academic teaching, research, and consulting at the Technical University of Berlin and the University of Applied Sciences Westkueste in Heide/Germany. Academic main fields were Thermodynamics, Mechanical Engineering, Ergonomics, and Logistics.</p>
+        <!-- HOMEPAGE -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>BMC Sp. z o.o.</h1>
+                <p>founded in 2015 in Poland</p>
+                <p><strong>BECCS by best ecological and economic Waste to Energy</strong></p>
+                <p>Among other things, the Palace Foundation offers also, even to some of the companies involved in the BMC project, a residence possibility as well as work and conference rooms and service.</p>
+                <p>It is about a global breakthrough in waste recycling and thus a realization of BECCS will be worldwide possible.</p>
             </div>
-            <div>
-                <br><br>
-                <p>Has another 20 years of experience working in medium-sized and large companies in high-level management positions and executive boards. Handled responsibilities for up to one billion Swiss Francs p.a. of business volume.</p>
-                <p>After reaching retirement, he uses his connections and knowledge to engage in very special and big projects which generally affect worldwide sustainability and founded his own company BMC Sp. z o.o. in Poland. Projects are developed by different BMC working groups as consortiums without external money.</p>
+        </section>
+
+        <!-- ABOUT FOUNDER -->
+        <section id="about">
+            <div class="card grid-2">
+                <div>
+                    <h2>About Founder</h2>
+                    <h3>Prof. Dr.- Ing. Hubert Boeckmann</h3>
+                    <p><strong>Founder + Majority Shareholder + CEO</strong></p>
+                    <p>born Mai 10.1946 in Germany, received one of the best university degrees as a Dipl.-Ing. (Business-) and as a Dr.-Ing. from the Technical University of Berlin (FB 16 - department mining + earth sciences).</p>
+                    <p>Has been active/working about 20 years in academic - teaching, research and consulting at the Technical University of Berlin and the University of Applied Sciences Westkueste in Heide/Germany. Academic main fields were: Thermodynamics and Mechanical-Engineering and Ergonomics and Logistics in special with material-handling and management as well as production- and energy- systems.</p>
+                </div>
+                <div>
+                    <br><br>
+                    <p>Has about another 20 years of experience of working in medium-sized and large companies; working in highest level management positions and executive boards. Had the responsibility for up to about one billion Swiss Francs p. a. of business volume as well as planning and reorganization volume up to 100 million € as a service provider and in the entire value chain from procurement and acquisition through production to distribution.</p>
+                    <p>After reaching retirement he uses his connections and knowledge to engage in very special and big projects which generally effects worldwide sustainability and founded for this his own company BMC Sp. z o.o. in Poland. With no strange money the projects are developed by different BMC working groups as consortiums.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PROJECT SECTION -->
-    <section id="project">
-        <div class="card">
-            <h2>The Project & Key Advantages</h2>
-            <p>With a globally enforceable Unique Selling Proposition (USP), the following key advantages for investors & plant operators become possible (compared to traditional waste incineration):</p>
-            
-            <ul class="usp-list">
-                <li>Optimal valorization of residual waste</li>
-                <li>Decoupling of the thermal and electrical outputs</li>
-                <li>Doubling net electrical efficiency of the power plant</li>
-                <li>World-leading potential for negative carbon emissions through BECCS</li>
-                <li>Capable of base and peak load and very strong energy balance in the grid</li>
-            </ul>
-
-            <h3 style="margin-top: 30px;">The Newly Developed Procedure</h3>
-            <p>We have developed a new process based solely on long-established, state-of-the-art components and systems. It is a prototype concept with a validated mass and energy balance, where only the component interconnection and the use of pyrolysis oil in the Two-Stroke marine diesel engine are novel.</p>
-            <p>Available for this process is the publication: <br>
-            <strong>"A Quantum Leap for Waste and BECCS with B-VM Power Plant"</strong><br>
-            <a href="https://www.intechopen.com/online-first/1193521" target="_blank">Read Publication on IntechOpen</a></p>
-            
-            <div class="highlight" style="margin-top: 30px;">
-                <h3>Global Implementation & Pilot Plant</h3>
-                <p>We are currently preparing the realization of a first pilot plant and a worldwide implementation of the technology. For the first pilot plant with a specified location, it is planned that the upstream waste treatment system will be built as a turnkey complex together with worldwide experienced companies.</p>
-                <p>Among other things, the Palace Foundation offers a residence possibility as well as work and conference rooms and services to companies involved.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- IMPRINT & CONTACT SECTION -->
-    <section id="imprint">
-        <div class="grid-2">
+        <!-- PROJECT SECTION (Pełna treść ze starej strony) -->
+        <section id="project">
             <div class="card">
-                <h2>Imprint / Company Info</h2>
-                <p><strong>BMC Sp. z o.o.</strong><br>
-                Founded in 2015</p>
-                <p><strong>Address:</strong><br>
-                Czernica 102 (Palace)<br>
-                58-521 Jeżów Sudecki<br>
-                Poland</p>
-                <p><strong>Registry Info:</strong><br>
-                Nip: 6112738079<br>
-                Regon: 360753539</p>
-                <p><strong>Contact:</strong><br>
-                E-Mail: <a href="mailto:HuBoe@BECCS-by-best-WtE.com">HuBoe@BECCS-by-best-WtE.com</a><br>
-                Phone: +48 661 781 056 / +49 172 435 2315</p>
-                <p style="font-size: 0.9rem; color: #777; margin-top: 20px;">
-                <strong>Responsible for the Website:</strong><br>
-                Lukas Malinowski (lukas@palacczernica.pl)
-                </p>
-            </div>
-
-            <div class="card">
-                <h2>Contact Us</h2>
-                <p>If you wish to contact us directly, please use the form below:</p>
+                <img src="B) Bild. TEAM, ACTIVITIES, xxx.webp" alt="Team Activities">
+                <hr>
                 
-                <!-- HIER DEINEN FORMSPREE LINK EINTRAGEN -->
-                <form action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your E-Mail" required>
-                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
+                <h2>With a globally enforceable Unique Selling Proposition USP, following Key Advantages for Investors & Plant Operators becomes possible:</h2>
+                <h3>(Compared to waste incineration)</h3>
+                <ol>
+                    <li><strong>Optimal valorization of residual waste</strong></li>
+                    <li><strong>Decoupling of the thermal and electrical outputs</strong></li>
+                    <li><strong>Doubling net electrical efficiency of the power plant</strong></li>
+                    <li><strong>World-leading potential for negative carbon emissions through BECCS</strong></li>
+                    <li><strong>Capable of base and peak load and very strong energy balance in grid</strong></li>
+                </ol>
+                <hr>
 
+                <h2>THE NEWLY DEVELOPED PROCEDURE IN A SIMPLIFIED PRESENTATION</h2>
+                <img src="2.Anhang PP korr. Müll Prozess Bild.webp" alt="Process Scheme">
+                <p>We have developed a new process based solely on long-established, state-of-the-art components and systems. It is a prototype concept with a validated mass and energy balance, where only the component interconnection and the use of pyrolysis oil in the Two-Stroke marine diesel engine are novel. The two companies, developing these engines, began corresponding trials as early as 1994/95 and currently confirm its feasibility. Both developers said: necessary injection systems would be supplied to our licensees. Based on available documentation and discussions, we anticipate that the TRL (Total Readiness Level) of the developer trials will be 5.</p>
+                
+                <h3>Available for this process is a publication</h3>
+                <p>"A Quantum Leap for Waste and BECCS with B-VM Power Plant"<br>
+                <a href="https://www.intechopen.com/online-first/1193521" target="_blank">https://www.intechopen.com/online-first/1193521</a></p>
+                <hr>
+
+                <h2>SUPPLEMENTED WITH THE FOLLOWING FOUR ILLUSTRATIONS</h2>
+                
+                <h3>1. Data on output of pyrolysis: (Energy instead weight-%)</h3>
+                <div class="grid-2">
+                    <div>
+                        <img src="Pyrotemp.webp" alt="Energy distribution Trockenstabilat">
+                        <p>Figure 5+: Stabilat product fractions in the output of the rotary kiln as energy [7]</p>
+                    </div>
+                    <div>
+                        <img src="Pyrotemp2.webp" alt="Energy distribution Beech wood">
+                        <p>Figure 5++: Beech product fractions in the output of the rotary kiln as energy [7]</p>
+                    </div>
+                </div>
+                <hr>
+
+                <h3>2. Data on the efficiency of waste incineration in Germany</h3>
+                <p>It is important that the waste incinerated in Germany has a residual moisture content of about 25%. Globally, higher moisture content values reduce efficiency.</p>
+                <div class="grid-2">
+                    <div>
+                        <img src="efficiency.webp" alt="Efficiency 1">
+                        <p>Figure 5+++: Electrical and total efficiency of German waste incineration plants 2012 – 2016. Projection is based on operator survey: response rate: 92% of capacity [10]</p>
+                    </div>
+                    <div>
+                        <img src="efficiency2.webp" alt="Efficiency 2">
+                        <p>Figure 5++++: Net efficiency of RDF power plants in Germany 2012 - 2016. Mean and maximum values for electrical and overall efficiency from operator survey [10]</p>
+                    </div>
+                </div>
+                <hr>
+
+                <h3>3. Use of the HERHOF process and our own process</h3>
+                <p>During development of the waste treatment upstream of the B-VM, it became apparent that, with regard to all parameters to be complied with for the treated waste, there were mainly usable standard units but also partial systems on the market. In the most aspects, this is not ultimately about pyrolysis processes with further development, but only about improving thermal utilization - in particular by means of incineration and gasification. Otherwise the production process for the HERHOF TROCKENSTABILAT® has been investigated to the greatest extent and depth. However, it has been ultimately not able to establish for incineration or gasification. Nevertheless, all these studies provide largely and precisely almost all the data required for the processing of waste and for pyrolysis with the B-VM.</p>
+                <p>The fact is that our existing, completely new treatment process developed by us for the B-VM, with its key areas works in a more targeted and economical way than HERHOF. But using HERHOF it is not necessary to disclose our newly designed process sequences and, in some cases, systems and aggregates, thereby jeopardizing patent protection.</p>
+                <p>Based on a typical waste composition for Central Europe with essential material data, the upstream waste treatment suitable for a 14 MW engine was designed using units and systems offered and adapted on the market. A completely new in-house development was then also carried out for special areas and circumstances, as nothing similar was available on the market. On this basis, it is possible realizing required local systems worldwide with its appropriate adaptations. For a designed upstream waste treatment, agreements were made with well-known manufacturers and different offers were obtained, with which CAPEX and OPEX were calculated.</p>
+                <p>For the first pilot plant with a specified location, it is planned that the upstream waste treatment system will be built as a turnkey complex together with one or two system providers – both worldwide very experienced companies.</p>
+                <hr>
+
+                <h3>4. Possible data on the worldwide use of the B-VM process</h3>
+                <p>Some world B-VM data derived by a project with a 14 MW Motor in the Czech Republic. The data can used globally for example to regions like Europe, America, China or single countries or similar, based on the existing waste capacity and its utilization; but all values are only placeholder for the actual values in each location.</p>
+                <p>1: Net electrical output of a plant with 14 MW engine is 10 MW into grid; during 8,000 h/a; (with 80 MW motor possible about 57 MW)</p>
+                <p>2: Currently around 15,000 such 14 MW systems in 2050; (based in pos. 5:)</p>
+                <p>3: Feasible to extract about -0.75 billion t/a of CO2 in 2050; (≈ 15 % from value postulated by IPCC and NAS)</p>
+                <p>4: With capex of around € 120 million/14 MW plant incl. BCC; (Bioenergy with Carbon Catching)</p>
+                <p>5: Average in 2050 is 1 billion t/a used waste + 1 billion t/a biomass; (World waste: 2 Billion t in 2016 and expected 3.8 Billion t in 2050)</p>
+                <hr>
+                
+                <p>With a CO2 price of € 100/t, this would be around 75 Giga €/a.</p>
+                <p>The 15,000 plants of 10 MW output, results in 150,000 MW capacity (it corresponds to around 150 large power plants - but decentralized in 15.000 locations). With 8,000 h/a, 1.2 Giga MWh of electricity can produce annually and with 100 €/MWh this results in 120 Giga €/a.</p>
+                <p>With an average of 100, - €/t waste, total of 100 Giga €/a is generated.</p>
+                <p>Further revenues are generated: from the processing of delivered waste (like extracted recyclable materials) and for the thermal energy supplied.</p>
+                <p><strong>A total world capex of 15,000 plants x € 120 million will be required (results in € 1,800,000 million; = € 1,800,000,000,000; = 1,8 Tera €)</strong>. This is a safe investment that also pays off. In contrast to investments in fossil fuels, which are running at roughly same level worldwide and are expected to continue from 2020 for almost 10 years up to 2030. But these could prove to be a gigantic speculation error due to the increasing competition from renewable energies (more details: T. Crysmann, "Es droht ein unkontrollierter Finanzkollaps" in: "Riskante Rohstoff-Geschäfte", t-online 14.01.2023).</p>
+                <hr>
+
+                <h1>We are currently preparing the realization of a first pilot plant and a worldwide implementation of the technology.</h1>
+                <p><strong>[Among other things, the palace foundation is able provide offices and social- and conference- rooms and different workshop- areas for companies.]</strong></p>
+                <img src="palacsmall.jpg" alt="Palace Foundation">
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 BMC Sp. z o.o. | BECCS-by-best-WtE. All rights reserved.</p>
-    </footer>
+        <!-- IMPRINT & CONTACT SECTION -->
+        <section id="imprint">
+            <div class="grid-2">
+                <div class="card">
+                    <h2>Imprint</h2>
+                    <p>You can reach us here:</p>
+                    <p><strong>BMC Sp. z o.o.</strong><br>
+                    Nip: 6112738079<br>
+                    Regon: 360753539<br>
+                    Founded in 2015</p>
+                    
+                    <p><strong>E-Mail:</strong><br>
+                    HuBoe@BECCS-by-best-WtE.com</p>
+                    
+                    <p><strong>Phone:</strong><br>
+                    +48 661 781 056<br>
+                    +49 172 435 2315</p>
+                    
+                    <p><strong>Address:</strong><br>
+                    Czernica 102 (Palace), 58-521 Jeżów Sudecki<br>
+                    Polen</p>
+
+                    <hr>
+                    <p><strong>Responsible for the Website:</strong><br>
+                    Lukas Malinowski<br>
+                    lukas@palacczernica.pl</p>
+                </div>
+
+                <div class="card">
+                    <h2>Contact Us</h2>
+                    <p>If you wish to contact</p>
+                    
+                    <!-- HIER DEINEN FORMSPREE LINK EINTRAGEN -->
+                    <form action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="E-Mail" required>
+                        <textarea name="message" rows="5" placeholder="Message" required></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
 </body>
 </html>
