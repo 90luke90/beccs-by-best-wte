@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BECCS-by-best-WtE | Waste to Energy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
         body { background-color: #f9fafb; overflow-x: hidden; }
         
-        h1, h2, h3 { color: #111; margin-bottom: 15px; }
-        p { margin-bottom: 15px; }
-        a { color: #0056b3; text-decoration: none; }
+        a { color: #555; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        hr { margin: 30px 0; border: 0; border-top: 1px solid #ddd; }
-        img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
+        img { max-width: 100%; height: auto; display: block; }
         
         /* --- SIDEBAR NAVIGATION --- */
         header {
@@ -25,22 +22,19 @@
             left: 0;
             width: 250px;
             height: 100vh;
-            background-color: #4d4d4d; /* Kolor z oryginału */
+            background-color: #4f4f4f; /* Ciemnoszary z oryginału */
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             z-index: 1000;
         }
-        
         .logo { font-size: 1.1rem; font-weight: 400; color: white; text-decoration: none; margin-bottom: 80px; display: block;}
         .logo:hover { color: #ddd; text-decoration: none; }
-        
         nav { flex-grow: 1; display: flex; align-items: center; justify-content: center; }
         nav ul { list-style: none; display: flex; flex-direction: column; gap: 20px; text-align: center; width: 100%; }
-        nav ul li a { font-weight: 400; color: #bbb; font-size: 0.9rem; transition: color 0.3s; }
+        nav ul li a { font-weight: 400; color: #ccc; font-size: 0.85rem; transition: color 0.3s; }
         nav ul li a:hover { color: white; text-decoration: none; font-weight: 600; }
-        
         .footer-nav { font-size: 0.75rem; color: #aaa; text-align: center; line-height: 1.8; }
         .footer-nav a { color: #aaa; text-decoration: none; }
         .footer-nav a:hover { color: white; }
@@ -50,11 +44,12 @@
             margin-left: 250px;
             width: calc(100% - 250px);
             min-height: 100vh;
+            background: #fff;
         }
 
-        /* --- HERO SECTION (Strona główna) --- */
+        /* --- 1. HERO SECTION (Pierwszy widok z zamkiem) --- */
         .hero-section {
-            background-image: url('home.webp'); /* Tło ze zdjęcia zamku */
+            background-image: url('home.webp'); 
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -62,61 +57,135 @@
             align-items: center;
             padding: 0 8%;
         }
-        
         .hero-content {
             max-width: 650px;
             color: white;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* Delikatny cień pod tekstem */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
         }
-        .hero-content h1 { color: white; font-size: 2.2rem; margin-bottom: 5px; font-weight: 600; }
+        .hero-content h1 { font-size: 2.2rem; margin-bottom: 5px; font-weight: 600; }
         .hero-content p.subtitle { font-size: 0.85rem; margin-bottom: 35px; font-weight: 300; }
-        .hero-content p.desc { font-size: 0.95rem; margin-bottom: 25px; font-weight: 300; line-height: 1.8; }
+        .hero-content p.desc { font-size: 0.95rem; font-weight: 300; line-height: 1.8; margin-bottom: 25px;}
 
-        /* --- INNE SEKCJE (Project, Imprint) --- */
-        .content-section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
-        .card { background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        /* --- 2. SUB-HERO SECTION (Rozjaśnione tło, małe zdjęcie) --- */
+        .sub-hero {
+            position: relative;
+            padding: 100px 8%;
+            overflow: hidden;
+            background-color: white;
+        }
+        .sub-hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('home.webp'); /* Używamy tego samego zdjęcia co na górze jako tła */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* Bardzo mocne rozjaśnienie / przezroczystość */
+            z-index: 0;
+        }
+        .sub-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .sub-hero-text {
+            flex: 1;
+        }
+        .sub-hero-text p.main-text {
+            font-size: 1.4rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .sub-hero-text p.small-text {
+            font-size: 0.75rem;
+            color: #555;
+        }
+        .sub-hero-image {
+            flex: 1;
+        }
+        .sub-hero-image img {
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-left: auto;
+        }
+
+        /* --- 3. ABOUT FOUNDER SECTION --- */
+        .about-founder {
+            padding: 80px 8% 120px;
+            background: #fff;
+            text-align: center;
+        }
+        .about-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .about-founder h2 { font-size: 1.4rem; font-weight: 500; margin-bottom: 20px; color: #333;}
+        .about-founder h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 10px; color: #222;}
+        .about-founder h4 { font-size: 1.6rem; font-weight: 600; margin-bottom: 40px; color: #222;}
         
-        /* --- FORMULARZ KONTAKTOWY --- */
-        form { display: flex; flex-direction: column; gap: 15px; }
-        input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 1rem; }
-        button.btn-submit { padding: 12px 20px; background: #555; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
+        .about-founder hr { margin: 30px auto; border: 0; border-top: 1px solid #e0e0e0; width: 100%; }
+        .about-founder p { font-size: 0.95rem; line-height: 1.8; color: #444; margin: 0 auto; }
+        
+        .project-link { 
+            display: block; 
+            text-align: left; 
+            margin-top: 50px; 
+            font-size: 0.95rem;
+            color: #777;
+            text-decoration: none;
+        }
+        .project-link:hover { text-decoration: underline; color: #333; }
+
+        /* --- PROJECT & IMPRINT SECTIONS (Stylizowane na jasne tło) --- */
+        .content-section { padding: 80px 8%; max-width: 1200px; margin: 0 auto; background: #fff;}
+        .content-section h1, .content-section h2, .content-section h3 { margin-bottom: 20px; color: #222;}
+        .content-section p { margin-bottom: 20px; line-height: 1.7; color: #444;}
+        .content-section hr { margin: 40px 0; border: 0; border-top: 1px solid #eee; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 30px;}
+        
+        form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px;}
+        input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; font-size: 0.95rem; }
+        button.btn-submit { padding: 12px 20px; background: #555; color: white; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
         button.btn-submit:hover { background: #333; }
 
         /* --- COOKIE BANNER --- */
         #cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 250px;
-            width: calc(100% - 250px);
-            background-color: #222;
-            color: white;
-            padding: 15px 20px;
-            display: none; /* Domyślnie ukryty, pokaże się przez skrypt JS */
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10000;
-            font-size: 0.85rem;
+            position: fixed; bottom: 0; left: 250px; width: calc(100% - 250px);
+            background-color: #222; color: white; padding: 15px 20px;
+            display: none; justify-content: space-between; align-items: center;
+            z-index: 10000; font-size: 0.85rem;
         }
         #cookie-banner button { background-color: #666; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; }
         #cookie-banner button:hover { background-color: #888; }
         #cookie-banner a { color: #ccc; text-decoration: underline; }
 
-        /* --- RESPONSIVNOŚĆ (dla telefonów) --- */
+        /* --- RESPONSIVE --- */
+        @media(max-width: 900px) {
+            .sub-hero-inner { flex-direction: column; text-align: center; }
+            .sub-hero-image img { margin: 0 auto; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
         @media(max-width: 768px) {
             header { width: 100%; height: auto; position: relative; padding: 20px; }
             .logo { margin-bottom: 20px; text-align: center; }
             nav ul { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 15px; }
             main { margin-left: 0; width: 100%; }
-            .hero-section { padding-left: 5%; height: auto; padding-top: 60px; padding-bottom: 60px; }
-            .grid-2 { grid-template-columns: 1fr; }
+            .hero-section { padding: 60px 5%; height: auto; }
             #cookie-banner { left: 0; width: 100%; flex-direction: column; text-align: center; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION (Pasek boczny) -->
+    <!-- NAVIGATION -->
     <header>
         <a href="#home" class="logo">BECCS-by-best-WtE</a>
         <nav>
@@ -135,110 +204,145 @@
     <!-- MAIN CONTENT -->
     <main>
         
-        <!-- HOMEPAGE -->
-        <section id="home" class="hero-section">
-            <div class="hero-content">
-                <h1>BMC Sp. z o.o.</h1>
-                <p class="subtitle">founded in 2015 in Poland</p>
-                <p class="desc"><strong>BECCS by best ecological and economic Waste to Energy</strong></p>
-                <p class="desc">Among other things, the Palace Foundation offers also,<br>
-                even to some of the companies involved in the BMC project,<br>
-                a residence possibility as well as work and conference rooms and service.</p>
-                <p class="desc">It is about a global breakthrough in waste recycling and thus<br>
-                a realization of BECCS will be worldwide possible.</p>
-            </div>
-        </section>
+        <!-- ================= HOMEPAGE ================= -->
+        <div id="home">
+            <!-- Hero 1 (Zdjęcie tła z napisami) -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1>BMC Sp. z o.o.</h1>
+                    <p class="subtitle">founded in 2015 in Poland</p>
+                    <p class="desc"><strong>BECCS by best ecological and economic Waste to Energy</strong></p>
+                    <p class="desc">Among other things, the Palace Foundation offers also,<br>
+                    even to some of the companies involved in the BMC project,<br>
+                    a residence possibility as well as work and conference rooms and service.</p>
+                </div>
+            </section>
 
-        <!-- PROJECT SECTION -->
+            <!-- Hero 2 (Rozjaśnione tło, małe zdjęcie) -->
+            <section class="sub-hero">
+                <div class="sub-hero-inner">
+                    <div class="sub-hero-text">
+                        <p class="main-text">It is about a global breakthrough in waste recycling and thus a realization of BECCS will be worldwide possible.</p>
+                        <p class="small-text">powered by BMC Sp. z o.o.</p>
+                    </div>
+                    <div class="sub-hero-image">
+                        <img src="palacsmall.jpg" alt="Palace Foundation">
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Founder (Wyśrodkowany tekst, linie) -->
+            <section class="about-founder">
+                <div class="about-inner">
+                    <h2>About Founder</h2>
+                    <h3>Prof. Dr.- Ing. Hubert Boeckmann</h3>
+                    <h4>Founder + Majority Shareholder + CEO</h4>
+                    
+                    <hr>
+                    <p>born Mai 10.1946 in Germany, received one of the best university degrees as a Dipl.-Ing. (Business−) and as a Dr.-Ing. from the Technical University of Berlin (FB 16 - department mining + earth sciences).</p>
+                    
+                    <hr>
+                    <p>Has been active/working about 20 years in academic − teaching, research and consulting at the Technical University of Berlin and the University of Applied Sciences Westkueste in Heide/Germany. Academic main fields were: Thermodynamics and Mechanical-Engineering and Ergonomics and Logistics in special with material−handling and management as well as production- and energy- systems.</p>
+                    
+                    <hr>
+                    <p>Has about another 20 years of experience of working in medium−sized and large companies; working in highest level management positions and executive boards. Had the responsibility for up to about one billion Swiss Francs p. a. of business volume as well as planning and reorganization volume up to 100 million € as a service provider and in the entire value chain from procurement and acquisition through production to distribution.</p>
+                    
+                    <hr>
+                    <p>After reaching retirement he uses his connections and knowledge to engage in very special and big projects which generally effects worldwide sustainability and founded for this his own company BMC Sp. z o.o. in Poland. With no strange money the projects are developed by different BMC working groups as consortiums.</p>
+                    
+                    <hr>
+                    <a href="#project" class="project-link">Project &rarr;</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PROJECT ================= -->
         <section id="project" class="content-section">
-            <div class="card">
-                <img src="B) Bild. TEAM, ACTIVITIES, xxx.webp" alt="Team Activities">
-                <hr>
-                
-                <h2>With a globally enforceable Unique Selling Proposition USP, following Key Advantages for Investors & Plant Operators becomes possible:</h2>
-                <h3>(Compared to waste incineration)</h3>
-                <ol style="margin-left: 20px; margin-bottom: 20px;">
-                    <li><strong>Optimal valorization of residual waste</strong></li>
-                    <li><strong>Decoupling of the thermal and electrical outputs</strong></li>
-                    <li><strong>Doubling net electrical efficiency of the power plant</strong></li>
-                    <li><strong>World-leading potential for negative carbon emissions through BECCS</strong></li>
-                    <li><strong>Capable of base and peak load and very strong energy balance in grid</strong></li>
-                </ol>
-                <hr>
+            <img src="B) Bild. TEAM, ACTIVITIES, xxx.webp" alt="Team Activities" style="margin: 0 auto 40px;">
+            <hr>
+            
+            <h2 style="font-size: 1.2rem;">With a globally enforceable Unique Selling Proposition USP, following Key Advantages for Investors & Plant Operators becomes possible:</h2>
+            <h3 style="font-size: 1rem; color: #555;">(Compared to waste incineration)</h3>
+            <ol style="margin-left: 20px; margin-bottom: 20px;">
+                <li><strong>Optimal valorization of residual waste</strong></li>
+                <li><strong>Decoupling of the thermal and electrical outputs</strong></li>
+                <li><strong>Doubling net electrical efficiency of the power plant</strong></li>
+                <li><strong>World-leading potential for negative carbon emissions through BECCS</strong></li>
+                <li><strong>Capable of base and peak load and very strong energy balance in grid</strong></li>
+            </ol>
+            <hr>
 
-                <h2>THE NEWLY DEVELOPED PROCEDURE IN A SIMPLIFIED PRESENTATION</h2>
-                <img src="2.Anhang PP korr. Müll Prozess Bild.webp" alt="Process Scheme">
-                <p>We have developed a new process based solely on long-established, state-of-the-art components and systems. It is a prototype concept with a validated mass and energy balance, where only the component interconnection and the use of pyrolysis oil in the Two-Stroke marine diesel engine are novel. The two companies, developing these engines, began corresponding trials as early as 1994/95 and currently confirm its feasibility. Both developers said: necessary injection systems would be supplied to our licensees. Based on available documentation and discussions, we anticipate that the TRL (Total Readiness Level) of the developer trials will be 5.</p>
-                
-                <h3>Available for this process is a publication</h3>
-                <p>"A Quantum Leap for Waste and BECCS with B-VM Power Plant"<br>
-                <a href="https://www.intechopen.com/online-first/1193521" target="_blank">https://www.intechopen.com/online-first/1193521</a></p>
-                <hr>
+            <h2 style="font-size: 1.2rem;">THE NEWLY DEVELOPED PROCEDURE IN A SIMPLIFIED PRESENTATION</h2>
+            <img src="2.Anhang PP korr. Müll Prozess Bild.webp" alt="Process Scheme">
+            <p>We have developed a new process based solely on long-established, state-of-the-art components and systems. It is a prototype concept with a validated mass and energy balance, where only the component interconnection and the use of pyrolysis oil in the Two-Stroke marine diesel engine are novel. The two companies, developing these engines, began corresponding trials as early as 1994/95 and currently confirm its feasibility. Both developers said: necessary injection systems would be supplied to our licensees. Based on available documentation and discussions, we anticipate that the TRL (Total Readiness Level) of the developer trials will be 5.</p>
+            
+            <h3 style="font-size: 1.1rem; margin-top: 30px;">Available for this process is a publication</h3>
+            <p>"A Quantum Leap for Waste and BECCS with B-VM Power Plant"<br>
+            <a href="https://www.intechopen.com/online-first/1193521" target="_blank" style="color: #0056b3;">https://www.intechopen.com/online-first/1193521</a></p>
+            <hr>
 
-                <h2>SUPPLEMENTED WITH THE FOLLOWING FOUR ILLUSTRATIONS</h2>
-                
-                <h3>1. Data on output of pyrolysis: (Energy instead weight-%)</h3>
-                <div class="grid-2">
-                    <div>
-                        <img src="Pyrotemp.webp" alt="Energy distribution Trockenstabilat">
-                        <p>Figure 5+: Stabilat product fractions in the output of the rotary kiln as energy [7]</p>
-                    </div>
-                    <div>
-                        <img src="Pyrotemp2.webp" alt="Energy distribution Beech wood">
-                        <p>Figure 5++: Beech product fractions in the output of the rotary kiln as energy [7]</p>
-                    </div>
+            <h2 style="font-size: 1.2rem;">SUPPLEMENTED WITH THE FOLLOWING FOUR ILLUSTRATIONS</h2>
+            
+            <h3 style="font-size: 1.1rem; margin-top: 20px;">1. Data on output of pyrolysis: (Energy instead weight-%)</h3>
+            <div class="grid-2">
+                <div>
+                    <img src="Pyrotemp.webp" alt="Energy distribution Trockenstabilat">
+                    <p style="font-size: 0.85rem; color: #666; text-align: center;">Figure 5+: Stabilat product fractions in the output of the rotary kiln as energy [7]</p>
                 </div>
-                <hr>
-
-                <h3>2. Data on the efficiency of waste incineration in Germany</h3>
-                <p>It is important that the waste incinerated in Germany has a residual moisture content of about 25%. Globally, higher moisture content values reduce efficiency.</p>
-                <div class="grid-2">
-                    <div>
-                        <img src="efficiency.webp" alt="Efficiency 1">
-                        <p>Figure 5+++: Electrical and total efficiency of German waste incineration plants 2012 – 2016. Projection is based on operator survey: response rate: 92% of capacity [10]</p>
-                    </div>
-                    <div>
-                        <img src="efficiency2.webp" alt="Efficiency 2">
-                        <p>Figure 5++++: Net efficiency of RDF power plants in Germany 2012 - 2016. Mean and maximum values for electrical and overall efficiency from operator survey [10]</p>
-                    </div>
+                <div>
+                    <img src="Pyrotemp2.webp" alt="Energy distribution Beech wood">
+                    <p style="font-size: 0.85rem; color: #666; text-align: center;">Figure 5++: Beech product fractions in the output of the rotary kiln as energy [7]</p>
                 </div>
-                <hr>
-
-                <h3>3. Use of the HERHOF process and our own process</h3>
-                <p>During development of the waste treatment upstream of the B-VM, it became apparent that, with regard to all parameters to be complied with for the treated waste, there were mainly usable standard units but also partial systems on the market. In the most aspects, this is not ultimately about pyrolysis processes with further development, but only about improving thermal utilization - in particular by means of incineration and gasification. Otherwise the production process for the HERHOF TROCKENSTABILAT® has been investigated to the greatest extent and depth. However, it has been ultimately not able to establish for incineration or gasification. Nevertheless, all these studies provide largely and precisely almost all the data required for the processing of waste and for pyrolysis with the B-VM.</p>
-                <p>The fact is that our existing, completely new treatment process developed by us for the B-VM, with its key areas works in a more targeted and economical way than HERHOF. But using HERHOF it is not necessary to disclose our newly designed process sequences and, in some cases, systems and aggregates, thereby jeopardizing patent protection.</p>
-                <p>Based on a typical waste composition for Central Europe with essential material data, the upstream waste treatment suitable for a 14 MW engine was designed using units and systems offered and adapted on the market. A completely new in-house development was then also carried out for special areas and circumstances, as nothing similar was available on the market. On this basis, it is possible realizing required local systems worldwide with its appropriate adaptations. For a designed upstream waste treatment, agreements were made with well-known manufacturers and different offers were obtained, with which CAPEX and OPEX were calculated.</p>
-                <p>For the first pilot plant with a specified location, it is planned that the upstream waste treatment system will be built as a turnkey complex together with one or two system providers – both worldwide very experienced companies.</p>
-                <hr>
-
-                <h3>4. Possible data on the worldwide use of the B-VM process</h3>
-                <p>Some world B-VM data derived by a project with a 14 MW Motor in the Czech Republic. The data can used globally for example to regions like Europe, America, China or single countries or similar, based on the existing waste capacity and its utilization; but all values are only placeholder for the actual values in each location.</p>
-                <p>1: Net electrical output of a plant with 14 MW engine is 10 MW into grid; during 8,000 h/a; (with 80 MW motor possible about 57 MW)</p>
-                <p>2: Currently around 15,000 such 14 MW systems in 2050; (based in pos. 5:)</p>
-                <p>3: Feasible to extract about -0.75 billion t/a of CO2 in 2050; (≈ 15 % from value postulated by IPCC and NAS)</p>
-                <p>4: With capex of around € 120 million/14 MW plant incl. BCC; (Bioenergy with Carbon Catching)</p>
-                <p>5: Average in 2050 is 1 billion t/a used waste + 1 billion t/a biomass; (World waste: 2 Billion t in 2016 and expected 3.8 Billion t in 2050)</p>
-                <hr>
-                
-                <p>With a CO2 price of € 100/t, this would be around 75 Giga €/a.</p>
-                <p>The 15,000 plants of 10 MW output, results in 150,000 MW capacity (it corresponds to around 150 large power plants - but decentralized in 15.000 locations). With 8,000 h/a, 1.2 Giga MWh of electricity can produce annually and with 100 €/MWh this results in 120 Giga €/a.</p>
-                <p>With an average of 100, - €/t waste, total of 100 Giga €/a is generated.</p>
-                <p>Further revenues are generated: from the processing of delivered waste (like extracted recyclable materials) and for the thermal energy supplied.</p>
-                <p><strong>A total world capex of 15,000 plants x € 120 million will be required (results in € 1,800,000 million; = € 1,800,000,000,000; = 1,8 Tera €)</strong>. This is a safe investment that also pays off. In contrast to investments in fossil fuels, which are running at roughly same level worldwide and are expected to continue from 2020 for almost 10 years up to 2030. But these could prove to be a gigantic speculation error due to the increasing competition from renewable energies (more details: T. Crysmann, "Es droht ein unkontrollierter Finanzkollaps" in: "Riskante Rohstoff-Geschäfte", t-online 14.01.2023).</p>
-                <hr>
-
-                <h2>We are currently preparing the realization of a first pilot plant and a worldwide implementation of the technology.</h2>
-                <p><strong>[Among other things, the palace foundation is able provide offices and social- and conference- rooms and different workshop- areas for companies.]</strong></p>
-                <img src="palacsmall.jpg" alt="Palace Foundation">
             </div>
+            <hr>
+
+            <h3 style="font-size: 1.1rem;">2. Data on the efficiency of waste incineration in Germany</h3>
+            <p>It is important that the waste incinerated in Germany has a residual moisture content of about 25%. Globally, higher moisture content values reduce efficiency.</p>
+            <div class="grid-2">
+                <div>
+                    <img src="efficiency.webp" alt="Efficiency 1">
+                    <p style="font-size: 0.85rem; color: #666; text-align: center;">Figure 5+++: Electrical and total efficiency of German waste incineration plants 2012 – 2016. [10]</p>
+                </div>
+                <div>
+                    <img src="efficiency2.webp" alt="Efficiency 2">
+                    <p style="font-size: 0.85rem; color: #666; text-align: center;">Figure 5++++: Net efficiency of RDF power plants in Germany 2012 - 2016. [10]</p>
+                </div>
+            </div>
+            <hr>
+
+            <h3 style="font-size: 1.1rem;">3. Use of the HERHOF process and our own process</h3>
+            <p>During development of the waste treatment upstream of the B-VM, it became apparent that, with regard to all parameters to be complied with for the treated waste, there were mainly usable standard units but also partial systems on the market. In the most aspects, this is not ultimately about pyrolysis processes with further development, but only about improving thermal utilization - in particular by means of incineration and gasification. Otherwise the production process for the HERHOF TROCKENSTABILAT® has been investigated to the greatest extent and depth. However, it has been ultimately not able to establish for incineration or gasification. Nevertheless, all these studies provide largely and precisely almost all the data required for the processing of waste and for pyrolysis with the B-VM.</p>
+            <p>The fact is that our existing, completely new treatment process developed by us for the B-VM, with its key areas works in a more targeted and economical way than HERHOF. But using HERHOF it is not necessary to disclose our newly designed process sequences and, in some cases, systems and aggregates, thereby jeopardizing patent protection.</p>
+            <p>Based on a typical waste composition for Central Europe with essential material data, the upstream waste treatment suitable for a 14 MW engine was designed using units and systems offered and adapted on the market. A completely new in-house development was then also carried out for special areas and circumstances, as nothing similar was available on the market. On this basis, it is possible realizing required local systems worldwide with its appropriate adaptations. For a designed upstream waste treatment, agreements were made with well-known manufacturers and different offers were obtained, with which CAPEX and OPEX were calculated.</p>
+            <p>For the first pilot plant with a specified location, it is planned that the upstream waste treatment system will be built as a turnkey complex together with one or two system providers – both worldwide very experienced companies.</p>
+            <hr>
+
+            <h3 style="font-size: 1.1rem;">4. Possible data on the worldwide use of the B-VM process</h3>
+            <p>Some world B-VM data derived by a project with a 14 MW Motor in the Czech Republic. The data can used globally for example to regions like Europe, America, China or single countries or similar, based on the existing waste capacity and its utilization; but all values are only placeholder for the actual values in each location.</p>
+            <p>1: Net electrical output of a plant with 14 MW engine is 10 MW into grid; during 8,000 h/a; (with 80 MW motor possible about 57 MW)</p>
+            <p>2: Currently around 15,000 such 14 MW systems in 2050; (based in pos. 5:)</p>
+            <p>3: Feasible to extract about -0.75 billion t/a of CO2 in 2050; (≈ 15 % from value postulated by IPCC and NAS)</p>
+            <p>4: With capex of around € 120 million/14 MW plant incl. BCC; (Bioenergy with Carbon Catching)</p>
+            <p>5: Average in 2050 is 1 billion t/a used waste + 1 billion t/a biomass; (World waste: 2 Billion t in 2016 and expected 3.8 Billion t in 2050)</p>
+            
+            <p style="margin-top:20px;">With a CO2 price of € 100/t, this would be around 75 Giga €/a.</p>
+            <p>The 15,000 plants of 10 MW output, results in 150,000 MW capacity (it corresponds to around 150 large power plants - but decentralized in 15.000 locations). With 8,000 h/a, 1.2 Giga MWh of electricity can produce annually and with 100 €/MWh this results in 120 Giga €/a.</p>
+            <p>With an average of 100, - €/t waste, total of 100 Giga €/a is generated.</p>
+            <p>Further revenues are generated: from the processing of delivered waste (like extracted recyclable materials) and for the thermal energy supplied.</p>
+            <p><strong>A total world capex of 15,000 plants x € 120 million will be required (results in € 1,800,000 million; = € 1,800,000,000,000; = 1,8 Tera €)</strong>. This is a safe investment that also pays off. In contrast to investments in fossil fuels, which are running at roughly same level worldwide and are expected to continue from 2020 for almost 10 years up to 2030. But these could prove to be a gigantic speculation error due to the increasing competition from renewable energies.</p>
+            <hr>
+
+            <h2 style="font-size: 1.3rem;">We are currently preparing the realization of a first pilot plant and a worldwide implementation of the technology.</h2>
+            <p><strong>[Among other things, the palace foundation is able provide offices and social- and conference- rooms and different workshop- areas for companies.]</strong></p>
         </section>
 
-        <!-- IMPRINT & CONTACT SECTION -->
-        <section id="imprint" class="content-section">
-            <div class="grid-2">
-                <div class="card">
-                    <h2>Imprint</h2>
-                    <p>You can reach us here:</p>
+        <!-- ================= IMPRINT ================= -->
+        <section id="imprint" class="content-section" style="padding-bottom: 120px;">
+            <hr>
+            <div class="grid-2" style="margin-top: 60px;">
+                <div>
+                    <h2 style="font-size: 1.4rem;">Imprint</h2>
+                    <p style="margin-bottom: 5px;">You can reach us here:</p>
                     <p><strong>BMC Sp. z o.o.</strong><br>
                     Nip: 6112738079<br>
                     Regon: 360753539<br>
@@ -255,14 +359,14 @@
                     Czernica 102 (Palace), 58-521 Jeżów Sudecki<br>
                     Polen</p>
 
-                    <hr>
+                    <br>
                     <p><strong>Responsible for the Website:</strong><br>
                     Lukas Malinowski<br>
                     lukas@palacczernica.pl</p>
                 </div>
 
-                <div class="card">
-                    <h2>Contact Us</h2>
+                <div>
+                    <h2 style="font-size: 1.4rem;">Contact Us</h2>
                     <p>If you wish to contact</p>
                     
                     <!-- HIER DEINEN FORMSPREE LINK EINTRAGEN -->
@@ -290,12 +394,10 @@
     </div>
 
     <script>
-        // Prosty skrypt pokazujący pasek z cookies
         document.addEventListener("DOMContentLoaded", function() {
             var banner = document.getElementById('cookie-banner');
             var acceptBtn = document.getElementById('accept-cookies');
 
-            // Pokaż, jeśli jeszcze nie zaakceptowano
             if (!localStorage.getItem('cookiesAccepted')) {
                 banner.style.display = 'flex';
             }
