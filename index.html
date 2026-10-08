@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BECCS-by-best-WtE | Waste to Energy</title>
+    <!-- Google Fonts für ein modernes Design -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- GRUNDDESIGN & RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
+        body { background-color: #f9fafb; }
+        h1, h2, h3 { color: #111; margin-bottom: 15px; }
+        p { margin-bottom: 15px; }
+        a { color: #0056b3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000; padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #0056b3; text-decoration: none; }
+        .logo:hover { text-decoration: none; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { font-weight: 600; color: #333; font-size: 1rem; }
+        nav ul li a:hover { color: #0056b3; text-decoration: none; }
+
+        /* --- SEKTIONEN --- */
+        section { padding: 100px 5% 60px; max-width: 1200px; margin: 0 auto; }
+        .hero { text-align: center; padding-top: 150px; padding-bottom: 80px; }
+        .hero h1 { font-size: 2.5rem; color: #0056b3; }
+        .hero p.subtitle { font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px; color: #555; }
+        
+        /* --- KARTEN-DESIGN --- */
+        .card { background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        @media(max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+        
+        /* --- LISTEN & HIGHLIGHTS --- */
+        ul.usp-list { list-style-type: none; margin-bottom: 20px; }
+        ul.usp-list li { margin-bottom: 10px; padding-left: 25px; position: relative; font-weight: 600; }
+        ul.usp-list li::before { content: "✓"; position: absolute; left: 0; color: #28a745; }
+        .highlight { background: #eef5ff; padding: 20px; border-left: 4px solid #0056b3; border-radius: 4px; }
+
+        /* --- KONTAKTFORMULAR --- */
+        form { display: flex; flex-direction: column; gap: 15px; }
+        input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 1rem; }
+        button { padding: 12px 20px; background: #0056b3; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: 600; transition: background 0.3s; }
+        button:hover { background: #004494; }
+
+        /* --- FOOTER --- */
+        footer { background: #111; color: #fff; text-align: center; padding: 20px 5%; margin-top: 50px; }
+        footer a { color: #ccc; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <a href="#home" class="logo">BECCS-by-best-WtE</a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#project">Project</a></li>
+                <li><a href="#imprint">Imprint & Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HOME / ABOUT SECTION -->
+    <section id="home" class="hero">
+        <h1>BECCS by best ecological and economic Waste to Energy</h1>
+        <p class="subtitle">A global breakthrough in waste recycling making BECCS possible worldwide.<br>Powered by <strong>BMC Sp. z o.o.</strong> (founded in 2015 in Poland).</p>
+        
+        <div class="card grid-2" style="text-align: left; margin-top: 40px;">
+            <div>
+                <h2>About the Founder</h2>
+                <h3>Prof. Dr.-Ing. Hubert Boeckmann</h3>
+                <p><strong>Founder + Majority Shareholder + CEO</strong></p>
+                <p>Born May 10, 1946 in Germany. Received one of the best university degrees as a Dipl.-Ing. (Business) and as a Dr.-Ing. from the Technical University of Berlin.</p>
+                <p>Has been active for about 20 years in academic teaching, research, and consulting at the Technical University of Berlin and the University of Applied Sciences Westkueste in Heide/Germany. Academic main fields were Thermodynamics, Mechanical Engineering, Ergonomics, and Logistics.</p>
+            </div>
+            <div>
+                <br><br>
+                <p>Has another 20 years of experience working in medium-sized and large companies in high-level management positions and executive boards. Handled responsibilities for up to one billion Swiss Francs p.a. of business volume.</p>
+                <p>After reaching retirement, he uses his connections and knowledge to engage in very special and big projects which generally affect worldwide sustainability and founded his own company BMC Sp. z o.o. in Poland. Projects are developed by different BMC working groups as consortiums without external money.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT SECTION -->
+    <section id="project">
+        <div class="card">
+            <h2>The Project & Key Advantages</h2>
+            <p>With a globally enforceable Unique Selling Proposition (USP), the following key advantages for investors & plant operators become possible (compared to traditional waste incineration):</p>
+            
+            <ul class="usp-list">
+                <li>Optimal valorization of residual waste</li>
+                <li>Decoupling of the thermal and electrical outputs</li>
+                <li>Doubling net electrical efficiency of the power plant</li>
+                <li>World-leading potential for negative carbon emissions through BECCS</li>
+                <li>Capable of base and peak load and very strong energy balance in the grid</li>
+            </ul>
+
+            <h3 style="margin-top: 30px;">The Newly Developed Procedure</h3>
+            <p>We have developed a new process based solely on long-established, state-of-the-art components and systems. It is a prototype concept with a validated mass and energy balance, where only the component interconnection and the use of pyrolysis oil in the Two-Stroke marine diesel engine are novel.</p>
+            <p>Available for this process is the publication: <br>
+            <strong>"A Quantum Leap for Waste and BECCS with B-VM Power Plant"</strong><br>
+            <a href="https://www.intechopen.com/online-first/1193521" target="_blank">Read Publication on IntechOpen</a></p>
+            
+            <div class="highlight" style="margin-top: 30px;">
+                <h3>Global Implementation & Pilot Plant</h3>
+                <p>We are currently preparing the realization of a first pilot plant and a worldwide implementation of the technology. For the first pilot plant with a specified location, it is planned that the upstream waste treatment system will be built as a turnkey complex together with worldwide experienced companies.</p>
+                <p>Among other things, the Palace Foundation offers a residence possibility as well as work and conference rooms and services to companies involved.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPRINT & CONTACT SECTION -->
+    <section id="imprint">
+        <div class="grid-2">
+            <div class="card">
+                <h2>Imprint / Company Info</h2>
+                <p><strong>BMC Sp. z o.o.</strong><br>
+                Founded in 2015</p>
+                <p><strong>Address:</strong><br>
+                Czernica 102 (Palace)<br>
+                58-521 Jeżów Sudecki<br>
+                Poland</p>
+                <p><strong>Registry Info:</strong><br>
+                Nip: 6112738079<br>
+                Regon: 360753539</p>
+                <p><strong>Contact:</strong><br>
+                E-Mail: <a href="mailto:HuBoe@BECCS-by-best-WtE.com">HuBoe@BECCS-by-best-WtE.com</a><br>
+                Phone: +48 661 781 056 / +49 172 435 2315</p>
+                <p style="font-size: 0.9rem; color: #777; margin-top: 20px;">
+                <strong>Responsible for the Website:</strong><br>
+                Lukas Malinowski (lukas@palacczernica.pl)
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>Contact Us</h2>
+                <p>If you wish to contact us directly, please use the form below:</p>
+                
+                <!-- HIER DEINEN FORMSPREE LINK EINTRAGEN -->
+                <form action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your E-Mail" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 BMC Sp. z o.o. | BECCS-by-best-WtE. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
